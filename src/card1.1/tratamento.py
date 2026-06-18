@@ -40,5 +40,5 @@ df['cast_clean'] = df['cast'].apply(extrair_top_atores)
 df_grafo = df[['id', 'original_title', 'genres_clean', 'director_clean', 'cast_clean']]
 
 # salvar o resultado final
-caminho_arquivo = 'tratamento/tmdb_grafo_limpo.pkl'
+caminho_arquivo = 'dados_tratados/tmdb_grafo_limpo.pkl'
 df_grafo.to_pickle(caminho_arquivo) # salvar em formato .pkl para que as propriedades Python se mantenham
