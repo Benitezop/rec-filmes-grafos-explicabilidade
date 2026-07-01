@@ -1,0 +1,26 @@
+{
+  "qtd_nos": 17157,
+  "qtd_arestas": 75212,
+  "qtd_nos_por_tipo": {
+    "actor": 9389,
+    "director": 2349,
+    "genre": 20,
+    "movie": 4790,
+    "user": 609
+  },
+  "qtd_arestas_por_tipo": {
+    "DIRECTED_BY": 4773,
+    "HAS_ACTOR": 23589,
+    "HAS_GENRE": 12160,
+    "RATED": 34690
+  },
+  "qtd_avaliacoes_movielens_entrada": 48575,
+  "qtd_avaliacoes_movielens_com_filme_no_tmdb": 34690,
+  "qtd_avaliacoes_movielens_ignoradas_sem_match_tmdb": 13885,
+  "qtd_arestas_esperadas": 75212,
+  "qtd_arestas_reais": 75212,
+  "arestas_batem_com_esperado": true,
+  "qtd_nos_orfaos": 0,
+  "nos_orfaos_amostra": [],
+  "possui_5_tipos_de_nos": true
+}
