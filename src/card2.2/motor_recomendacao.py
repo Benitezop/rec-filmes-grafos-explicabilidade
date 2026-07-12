@@ -423,6 +423,47 @@ class MotorRecomendacao:
             })
 
         return pd.DataFrame(metadados_list)
+    
+    def gerar_recomendacoes_com_explicacao(
+            self,
+            user_id: int,
+            n_recomendacoes: int = 10,
+            min_rating: float = 4.0
+        ) -> pd.DataFrame:
+            """
+            Gera recomendações e anexa a justificativa textual XAI gerada pelo Card 2.3.
+            """
+            import sys
+            import os
+            sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'card2.3')))
+            from modulo_xai import MotorExplicabilidadeXAI
+
+            recomendacoes = self.gerar_recomendacoes(
+                user_id, 
+                n_recomendacoes=n_recomendacoes, 
+                min_rating=min_rating,
+                max_profundidade=3
+            )
+
+            if recomendacoes.empty:
+                return recomendacoes
+
+            # Instancia o motor XAI
+            xai_engine = MotorExplicabilidadeXAI(self.grafo)
+            user_node = f"user:{int(user_id)}"
+            
+            justificativas = []
+            
+            # Para cada filme recomendado, rastreia o caminho no grafo
+            for _, row in recomendacoes.iterrows():
+                filme_node = row["filme_node"]
+                explicacao = xai_engine.rastrear_caminho_explicativo(user_node, filme_node)
+                justificativas.append(explicacao)
+
+            # Adiciona a nova coluna de Explicabilidade ao DataFrame
+            recomendacoes["justificativa_xai"] = justificativas
+            
+            return recomendacoes
 
 
 # ============================================================================
@@ -524,8 +565,7 @@ def teste_usuario_3(motor: MotorRecomendacao, user_id: int = 3):
 
     print("\n✓ Teste 3 PASSOU")
 
-
-def executar_testes(caminho_grafo: str = "dados_tratados/grafo_filmes.pkl"):
+def executar_testes(caminho_grafo: str = "../card2.1/dados_tratados/grafo_filmes.pkl"):
     """
     Executa suite completa de testes.
 
