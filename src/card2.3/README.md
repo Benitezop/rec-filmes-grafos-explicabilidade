@@ -24,6 +24,9 @@ O módulo XAI busca rotas de tamanho exato igual a 4 nós (Usuário $\rightarrow
 | `DIRECTED_BY` | Semântico | *"que também foi dirigido por {diretor}"* |
 | `HAS_ACTOR` | Semântico | *"que também estrelou {ator}"* |
 | `HAS_GENRE` | Semântico | *"que pertence ao gênero {gênero}"* (Inclui aviso de generalidade) |
+| `HAS_KEYWORD` | Semântico | *"que compartilha o tema '{entidade}"* |
+| `PRODUCED_BY` | Semântico | *"que também foi produzido por {produtor}"* |
+| `BELONGS_TO_COLLECTION` | Semântico | *"que faz parte da mesma franquia/coleção"* |
 | `RATED` | Colaborativo | *"que também é muito bem avaliado por outros usuários (ex: Usuário {id}), que tem perfil similar ao seu"* |
 
 *Caso o algoritmo identifique uma nova relação não mapeada, um mecanismo de **fallback dinâmico** imprimirá o tipo estrutural bruto da aresta para fins de auditoria técnica.*
